@@ -38,7 +38,6 @@ function AuthedLayout() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Toaster richColors position="top-center" />
       <nav className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link to="/dashboard" className="text-xl font-bold tracking-tight">

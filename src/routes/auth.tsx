@@ -160,7 +160,6 @@ function AuthPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Toaster richColors position="top-center" />
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col lg:flex-row">
         {/* Left brand panel */}
         <aside className="hidden flex-1 flex-col justify-between bg-slate-950 p-12 text-white lg:flex">
