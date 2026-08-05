@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "sonner";
 
 function NotFoundComponent() {
@@ -39,7 +38,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    // Error reporting removed
   }, [error]);
 
   return (
@@ -97,16 +96,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "twitter:description",
         content:
           "Design, preview, and export professional resumes as high-quality PDF or PNG. Six curated templates for every career stage.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3af05a89-7d45-4dc4-9493-dc456b597e43/id-preview-bab33980--1ff42bdc-bd17-46ed-aed3-92d0eec7a623.lovable.app-1784732295041.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3af05a89-7d45-4dc4-9493-dc456b597e43/id-preview-bab33980--1ff42bdc-bd17-46ed-aed3-92d0eec7a623.lovable.app-1784732295041.png",
       },
     ],
     links: [

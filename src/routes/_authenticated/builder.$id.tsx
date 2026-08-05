@@ -1,5 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { toPng } from "html-to-image";
+import { jsPDF } from "jspdf";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { emptyResume, uid, TEMPLATES, type ResumeData, type TemplateId } from "@/lib/resume-types";
@@ -180,7 +182,6 @@ function Builder() {
   const renderPngDataUrl = async (): Promise<string> => {
     const el = document.getElementById("resume-print") as HTMLElement | null;
     if (!el) throw new Error("Preview not found");
-    const { toPng } = await import("html-to-image");
     // html-to-image renders at natural element size; preview transform on
     // wrapper does not affect the captured node. Force explicit A4 pixels.
     return toPng(el, {
@@ -208,8 +209,8 @@ function Builder() {
   const exportPdf = async () => {
     toast.loading("Generating PDF…", { id: "pdf" });
     try {
-      const [dataUrl, jspdfMod] = await Promise.all([renderPngDataUrl(), import("jspdf")]);
-      const pdf = new jspdfMod.jsPDF({
+      const dataUrl = await renderPngDataUrl();
+      const pdf = new jsPDF({
         unit: "mm",
         format: "a4",
         orientation: "portrait",

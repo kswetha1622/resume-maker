@@ -105,3 +105,8 @@
     margin: 0;
   }
 }
+
+/* Hide Lovable badge and watermark */
+#lovable-badge-container, [id*="lovable"] {
+  display: none !important;
+}
